@@ -7,15 +7,17 @@ interface QRModalProps {
   onClose: () => void;
 }
 
+const DEFAULT_DEPLOYED_URL = 'https://delhi-aiml-exhibition.vercel.app';
+
 export const QRModal: React.FC<QRModalProps> = ({ isOpen, onClose }) => {
-  const [currentUrl, setCurrentUrl] = useState<string>('');
-  const [customUrl, setCustomUrl] = useState<string>('');
+  const [currentUrl, setCurrentUrl] = useState<string>(DEFAULT_DEPLOYED_URL);
+  const [customUrl, setCustomUrl] = useState<string>(DEFAULT_DEPLOYED_URL);
   const [copied, setCopied] = useState<boolean>(false);
   const [stickerMode, setStickerMode] = useState<boolean>(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const url = window.location.href;
+      const url = window.location.href.includes('localhost') ? DEFAULT_DEPLOYED_URL : window.location.href;
       setCurrentUrl(url);
       setCustomUrl(url);
     }
@@ -33,7 +35,7 @@ export const QRModal: React.FC<QRModalProps> = ({ isOpen, onClose }) => {
     window.print();
   };
 
-  const qrTarget = customUrl || currentUrl || 'http://localhost:5173';
+  const qrTarget = customUrl || currentUrl || DEFAULT_DEPLOYED_URL;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
