@@ -66,8 +66,17 @@ export const QRModal: React.FC<QRModalProps> = ({ isOpen, onClose }) => {
           id="printable-table-stand"
           className="bg-gradient-to-b from-delhi-maroon-950 to-delhi-dark-900 border-2 border-delhi-gold-500/50 rounded-2xl p-6 text-center space-y-4 shadow-gold"
         >
+          {/* Official PESITM Header on Stand */}
+          <div className="bg-white/95 rounded-xl p-2 border border-delhi-gold-500/40 max-w-sm mx-auto shadow-sm">
+            <img
+              src="/images/pesitm_official_header.png"
+              alt="PESITM Shivamogga"
+              className="w-full h-auto object-contain rounded"
+            />
+          </div>
+
           {/* Header banner */}
-          <div className="space-y-1">
+          <div className="space-y-1 pt-1">
             <h4 className="text-xl font-heading font-black text-delhi-gold-300">
               DELHI 🇮🇳
             </h4>
@@ -98,25 +107,44 @@ export const QRModal: React.FC<QRModalProps> = ({ isOpen, onClose }) => {
             <p className="text-[11px] text-delhi-cream-300">
               Explore History • Iconic Places • No-Fire Recipes • Live Quiz
             </p>
+            <p className="text-[10px] font-mono text-delhi-gold-300/80 pt-1">
+              URL: {qrTarget}
+            </p>
           </div>
         </div>
 
         {/* Local Network / Wi-Fi Quick Setup Guide */}
         <div className="p-4 rounded-2xl bg-delhi-dark-900 border border-delhi-gold-500/20 space-y-3">
-          <div className="flex items-center gap-2 text-xs font-mono text-delhi-gold-400 font-bold uppercase">
-            <Wifi size={14} className="text-delhi-saffron-500" />
-            <span>Local Competition Wi-Fi Sharing</span>
+          <div className="flex items-center justify-between text-xs font-mono">
+            <span className="text-delhi-gold-400 font-bold uppercase flex items-center gap-1.5">
+              <Wifi size={14} className="text-delhi-saffron-500" />
+              <span>Stall QR Target URL</span>
+            </span>
+            <span className="text-delhi-cream-400 text-[10px]">Instant Live QR</span>
           </div>
-          <p className="text-xs text-delhi-cream-300 leading-relaxed">
-            To allow judges&apos; phones on the same Wi-Fi to open this site locally, run Vite with <code className="px-1.5 py-0.5 rounded bg-delhi-dark-800 text-delhi-gold-300 font-mono text-[11px]">npm run dev -- --host</code> and enter your Wi-Fi IP address below:
-          </p>
+
+          {/* Quick Preset Buttons */}
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={() => setCustomUrl('http://192.168.31.205:5173')}
+              className="text-[11px] font-mono px-3 py-1 rounded-lg bg-delhi-dark-950 border border-delhi-gold-500/40 text-delhi-gold-300 hover:bg-delhi-gold-500/20 transition-all"
+            >
+              📡 Local Wi-Fi IP (192.168.31.205:5173)
+            </button>
+            <button
+              onClick={() => setCustomUrl(window.location.href)}
+              className="text-[11px] font-mono px-3 py-1 rounded-lg bg-delhi-dark-950 border border-white/10 text-delhi-cream-300 hover:bg-white/10 transition-all"
+            >
+              🌐 Browser Current URL
+            </button>
+          </div>
 
           <div className="flex items-center gap-2">
             <input
               type="text"
               value={customUrl}
               onChange={(e) => setCustomUrl(e.target.value)}
-              placeholder="e.g. http://192.168.1.5:5173"
+              placeholder="Paste your live Vercel/Netlify URL here (e.g. https://delhi-aiml.vercel.app)"
               className="w-full px-3 py-2 rounded-xl bg-delhi-dark-950 border border-white/10 text-xs text-delhi-cream-100 font-mono focus:border-delhi-gold-400 focus:outline-none"
             />
             <button
@@ -137,7 +165,7 @@ export const QRModal: React.FC<QRModalProps> = ({ isOpen, onClose }) => {
             className="flex-1 py-3 rounded-xl bg-delhi-dark-800 hover:bg-delhi-dark-700 text-delhi-cream-100 border border-white/10 text-xs font-bold flex items-center justify-center gap-2 transition-colors"
           >
             <Printer size={15} />
-            <span>Print Stand Card</span>
+            <span>🖨️ Print Stand Card</span>
           </button>
           <button
             onClick={onClose}
