@@ -1,0 +1,188 @@
+@import "tailwindcss";
+
+@theme {
+  --color-delhi-maroon-50: #FDF2F4;
+  --color-delhi-maroon-100: #FBE8EB;
+  --color-delhi-maroon-200: #F7D0D7;
+  --color-delhi-maroon-600: #9B1B30;
+  --color-delhi-maroon-700: #7A1324;
+  --color-delhi-maroon-800: #4A0E17;
+  --color-delhi-maroon-900: #2D080E;
+  --color-delhi-maroon-950: #1A0407;
+  --color-delhi-maroon: #4A0E17;
+
+  --color-delhi-saffron-50: #FFF8F0;
+  --color-delhi-saffron-100: #FEEAD4;
+  --color-delhi-saffron-200: #FDD5AA;
+  --color-delhi-saffron-300: #FDBA74;
+  --color-delhi-saffron-400: #FB923C;
+  --color-delhi-saffron-500: #F39C12;
+  --color-delhi-saffron-600: #E67E22;
+  --color-delhi-saffron-700: #D35400;
+  --color-delhi-saffron: #E67E22;
+
+  --color-delhi-gold-100: #FCF8E3;
+  --color-delhi-gold-200: #F9F1C7;
+  --color-delhi-gold-300: #F3E28F;
+  --color-delhi-gold-400: #E6CB54;
+  --color-delhi-gold-500: #D4AF37;
+  --color-delhi-gold-600: #B89223;
+  --color-delhi-gold-700: #8C6C13;
+  --color-delhi-gold: #D4AF37;
+
+  --color-delhi-cream-50: #FFFFFF;
+  --color-delhi-cream-100: #FDFBF7;
+  --color-delhi-cream-200: #FAF6ED;
+  --color-delhi-cream-300: #F3EDE0;
+  --color-delhi-cream-400: #E2D8C3;
+  --color-delhi-cream: #FAF6ED;
+
+  --color-delhi-green-50: #F0F7F4;
+  --color-delhi-green-100: #DBEDE3;
+  --color-delhi-green-700: #165B40;
+  --color-delhi-green-800: #0F3E2B;
+  --color-delhi-green-900: #09271B;
+  --color-delhi-green: #0F3E2B;
+
+  --color-delhi-dark-800: #1F171A;
+  --color-delhi-dark-900: #140E10;
+  --color-delhi-dark-950: #0B0708;
+  --color-delhi-dark: #140E10;
+
+  --font-heading: "Cinzel", "Playfair Display", Georgia, serif;
+  --font-body: "Outfit", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-hindi: "Rozha One", "Yatra One", serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: #0B0708;
+  color: #FAF6ED;
+  font-family: 'Outfit', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom Golden Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #140E10;
+}
+::-webkit-scrollbar-thumb {
+  background: #8C6C13;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D4AF37;
+}
+
+/* Subtle Jaali Lattice Background Pattern */
+.bg-jaali {
+  background-image: radial-gradient(#D4AF37 0.75px, transparent 0.75px), radial-gradient(#D4AF37 0.75px, #0B0708 0.75px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+  background-color: #0B0708;
+}
+
+.bg-jaali-subtle {
+  background-image: radial-gradient(rgba(212, 175, 55, 0.15) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Glassmorphism Card Style */
+.glass-card {
+  background: rgba(26, 18, 21, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.glass-card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glass-card-hover:hover {
+  background: rgba(45, 8, 14, 0.85);
+  border-color: rgba(212, 175, 55, 0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px -5px rgba(212, 175, 55, 0.2);
+}
+
+.shadow-royal {
+  box-shadow: 0 10px 30px -5px rgba(74, 14, 23, 0.4);
+}
+
+.shadow-gold {
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
+}
+
+.shadow-gold-lg {
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+}
+
+.shadow-card {
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulseGlow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Hide scrollbar for clean horizontal carousel */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Print Style for QR Stand and Official Certificate */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-table-stand, #printable-table-stand *,
+  #printable-certificate, #printable-certificate * {
+    visibility: visible;
+  }
+  #printable-table-stand,
+  #printable-certificate {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: white !important;
+    color: black !important;
+  }
+}
