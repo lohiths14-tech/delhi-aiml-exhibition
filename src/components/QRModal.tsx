@@ -11,6 +11,7 @@ export const QRModal: React.FC<QRModalProps> = ({ isOpen, onClose }) => {
   const [currentUrl, setCurrentUrl] = useState<string>('');
   const [customUrl, setCustomUrl] = useState<string>('');
   const [copied, setCopied] = useState<boolean>(false);
+  const [stickerMode, setStickerMode] = useState<boolean>(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -61,54 +62,89 @@ export const QRModal: React.FC<QRModalProps> = ({ isOpen, onClose }) => {
           </p>
         </div>
 
+        {/* Mode Selector Tab */}
+        <div className="flex items-center justify-center gap-2 p-1 bg-delhi-dark-900 rounded-xl border border-white/10 max-w-xs mx-auto">
+          <button
+            onClick={() => setStickerMode(false)}
+            className={`flex-1 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              !stickerMode
+                ? 'bg-delhi-gold-500 text-delhi-dark-950 shadow-sm'
+                : 'text-delhi-cream-400 hover:text-white'
+            }`}
+          >
+            Full Stand Poster
+          </button>
+          <button
+            onClick={() => setStickerMode(true)}
+            className={`flex-1 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              stickerMode
+                ? 'bg-delhi-gold-500 text-delhi-dark-950 shadow-sm'
+                : 'text-delhi-cream-400 hover:text-white'
+            }`}
+          >
+            Table Sticker Only 🏷️
+          </button>
+        </div>
+
         {/* Printable Stand Container */}
         <div
           id="printable-table-stand"
-          className="bg-gradient-to-b from-delhi-maroon-950 to-delhi-dark-900 border-2 border-delhi-gold-500/50 rounded-2xl p-6 text-center space-y-4 shadow-gold"
+          className="bg-white text-delhi-dark-950 border-4 border-delhi-gold-600 rounded-3xl p-6 sm:p-8 text-center space-y-4 shadow-2xl relative overflow-hidden"
         >
-          {/* Official PESITM Header on Stand */}
-          <div className="bg-white/95 rounded-xl p-2 border border-delhi-gold-500/40 max-w-sm mx-auto shadow-sm">
-            <img
-              src="/images/pesitm_official_header.png"
-              alt="PESITM Shivamogga"
-              className="w-full h-auto object-contain rounded"
-            />
-          </div>
+          {/* Subtle Corner Filigree */}
+          <span className="absolute top-2 left-3 text-lg text-delhi-gold-700 select-none">⚜️</span>
+          <span className="absolute top-2 right-3 text-lg text-delhi-gold-700 select-none">⚜️</span>
+          <span className="absolute bottom-2 left-3 text-lg text-delhi-gold-700 select-none">⚜️</span>
+          <span className="absolute bottom-2 right-3 text-lg text-delhi-gold-700 select-none">⚜️</span>
 
-          {/* Header banner */}
-          <div className="space-y-1 pt-1">
-            <h4 className="text-xl font-heading font-black text-delhi-gold-300">
-              DELHI 🇮🇳
-            </h4>
-            <p className="text-xs font-hindi text-delhi-saffron-400 font-medium">
-              “स्वाद • संस्कृति • मोहब्बत”
-            </p>
-            <p className="text-[11px] font-mono text-delhi-cream-300">
-              Cooking Without Fire • AIML Department
-            </p>
-          </div>
+          {!stickerMode && (
+            <>
+              {/* Official PESITM Header on Stand */}
+              <div className="bg-white rounded-xl p-1 max-w-sm mx-auto">
+                <img
+                  src="/images/pesitm_official_header.png"
+                  alt="PESITM Shivamogga"
+                  className="w-full h-auto object-contain"
+                />
+              </div>
+
+              {/* Header banner */}
+              <div className="space-y-0.5 pt-1">
+                <h4 className="text-xl sm:text-2xl font-heading font-black text-delhi-maroon-900 tracking-wide">
+                  DELHI 🇮🇳
+                </h4>
+                <p className="text-xs font-hindi text-delhi-saffron-700 font-semibold">
+                  “स्वाद • संस्कृति • मोहब्बत”
+                </p>
+                <p className="text-[10px] font-mono text-delhi-dark-700 font-medium">
+                  Cooking Without Fire 2026 • AIML Department
+                </p>
+              </div>
+            </>
+          )}
 
           {/* QR Code Frame */}
-          <div className="inline-block p-4 bg-white rounded-2xl shadow-xl border-4 border-delhi-gold-500">
+          <div className="inline-block p-4 bg-white rounded-2xl shadow-lg border-4 border-delhi-maroon-800">
             <QRCodeSVG
               value={qrTarget}
-              size={190}
+              size={stickerMode ? 220 : 180}
               level="H"
               includeMargin={false}
-              fgColor="#2D080E"
+              fgColor="#140E10"
               bgColor="#FFFFFF"
             />
           </div>
 
-          <div className="space-y-1">
-            <p className="text-xs font-heading font-bold text-delhi-gold-400 uppercase tracking-wider">
-              Scan with your phone camera
+          {/* THE EXACT SURPRISE TAGLINE */}
+          <div className="space-y-1.5 pt-1">
+            <h3 className="text-base sm:text-lg font-heading font-black text-delhi-maroon-900 tracking-tight">
+              “Scan me — there&apos;s a surprise inside! 👀”
+            </h3>
+            <p className="text-[11px] font-mono text-delhi-saffron-700 font-bold">
+              🎵 Live Classical Music • Interactive Quiz • AIML Menu
             </p>
-            <p className="text-[11px] text-delhi-cream-300">
-              Explore History • Iconic Places • No-Fire Recipes • Live Quiz
-            </p>
-            <p className="text-[10px] font-mono text-delhi-gold-300/80 pt-1">
-              URL: {qrTarget}
+            <p className="text-[9px] font-mono text-delhi-dark-600 truncate max-w-xs mx-auto">
+              {qrTarget}
             </p>
           </div>
         </div>
