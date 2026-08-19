@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { DELHI_QUIZ_QUESTIONS } from '../data/delhiData';
-import { HelpCircle, CheckCircle2, XCircle, Trophy, RotateCcw, Sparkles, ArrowRight, Award } from 'lucide-react';
+import { HelpCircle, CheckCircle2, XCircle, Trophy, RotateCcw, Sparkles, ArrowRight, Award, Download, Printer, Loader2 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { toPng } from 'html-to-image';
 
 export const DelhiQuiz: React.FC = () => {
   const [currentIdx, setCurrentIdx] = useState<number>(0);
@@ -11,6 +12,31 @@ export const DelhiQuiz: React.FC = () => {
   const [quizCompleted, setQuizCompleted] = useState<boolean>(false);
   const [showCertificate, setShowCertificate] = useState<boolean>(false);
   const [recipientName, setRecipientName] = useState<string>('Honourable Judge / Guest');
+  const [isDownloading, setIsDownloading] = useState<boolean>(false);
+
+  const downloadCertificateImage = async () => {
+    const node = document.getElementById('printable-certificate');
+    if (!node) return;
+    setIsDownloading(true);
+    try {
+      const dataUrl = await toPng(node, {
+        quality: 0.98,
+        pixelRatio: 2,
+        backgroundColor: '#FAF6ED',
+        cacheBust: true,
+      });
+      const link = document.createElement('a');
+      const cleanName = (recipientName || 'Guest').trim().replace(/[^a-zA-Z0-9]/g, '_');
+      link.download = `PESITM_AIML_Certificate_${cleanName}.png`;
+      link.href = dataUrl;
+      link.click();
+    } catch (err) {
+      console.error('Failed to export certificate image:', err);
+      window.print();
+    } finally {
+      setIsDownloading(false);
+    }
+  };
 
   const currentQ = DELHI_QUIZ_QUESTIONS[currentIdx];
 
@@ -305,25 +331,47 @@ export const DelhiQuiz: React.FC = () => {
               </div>
 
               {/* Recipient Name Customization Input */}
-              <div className="p-4 rounded-2xl bg-delhi-dark-900 border border-delhi-gold-500/30 flex flex-col sm:flex-row items-center gap-3">
-                <label htmlFor="judge-name-input" className="text-xs font-mono text-delhi-cream-300 shrink-0">
-                  Recipient Name:
-                </label>
-                <input
-                  id="judge-name-input"
-                  type="text"
-                  value={recipientName}
-                  onChange={(e) => setRecipientName(e.target.value)}
-                  placeholder="Enter Name (e.g. Prof. Rajesh / Judge Sharma)"
-                  className="w-full bg-delhi-dark-950 border border-delhi-gold-500/40 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-delhi-gold-400 font-medium"
-                />
-                <button
-                  onClick={() => window.print()}
-                  className="w-full sm:w-auto px-5 py-2 rounded-xl bg-delhi-gold-500 hover:bg-delhi-gold-400 text-delhi-dark-950 font-bold text-xs shrink-0 shadow-gold transition-all flex items-center justify-center gap-1.5"
-                >
-                  <span>🖨️</span>
-                  <span>Print / Save PDF</span>
-                </button>
+              <div className="p-4 rounded-2xl bg-delhi-dark-900 border border-delhi-gold-500/30 flex flex-col gap-3">
+                <div className="flex flex-col sm:flex-row items-center gap-2 w-full">
+                  <label htmlFor="judge-name-input" className="text-xs font-mono text-delhi-cream-300 shrink-0 self-start sm:self-center">
+                    Recipient Name:
+                  </label>
+                  <input
+                    id="judge-name-input"
+                    type="text"
+                    value={recipientName}
+                    onChange={(e) => setRecipientName(e.target.value)}
+                    placeholder="Enter Name (e.g. Prof. Rajesh / Judge Sharma)"
+                    className="w-full bg-delhi-dark-950 border border-delhi-gold-500/40 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-delhi-gold-400 font-medium"
+                  />
+                </div>
+
+                <div className="flex flex-wrap items-center justify-end gap-2 pt-1">
+                  <button
+                    onClick={downloadCertificateImage}
+                    disabled={isDownloading}
+                    className="flex-1 sm:flex-none px-5 py-2.5 rounded-xl bg-gradient-to-r from-delhi-gold-500 to-delhi-saffron-600 hover:from-delhi-gold-400 hover:to-delhi-saffron-500 text-delhi-dark-950 font-bold text-xs shadow-gold transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                  >
+                    {isDownloading ? (
+                      <>
+                        <Loader2 size={14} className="animate-spin" />
+                        <span>Generating Image...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Download size={14} />
+                        <span>Download Certificate (PNG Image) 🖼️</span>
+                      </>
+                    )}
+                  </button>
+                  <button
+                    onClick={() => window.print()}
+                    className="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-delhi-dark-800 hover:bg-delhi-dark-700 text-delhi-cream-200 border border-white/10 text-xs font-semibold transition-all flex items-center justify-center gap-1.5"
+                  >
+                    <Printer size={14} />
+                    <span>Print (1 Page PDF)</span>
+                  </button>
+                </div>
               </div>
 
               {/* THE GRAND PRINTABLE CERTIFICATE CARD */}

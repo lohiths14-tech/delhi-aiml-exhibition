@@ -165,24 +165,63 @@ body {
   scrollbar-width: none;
 }
 
-/* Print Style for QR Stand and Official Certificate */
+/* Strict 1-Page Print Isolation for QR Stand and Certificate */
 @media print {
+  @page {
+    size: auto;
+    margin: 6mm;
+  }
+
+  html, body {
+    height: 100% !important;
+    overflow: hidden !important;
+    background: white !important;
+    color: #140E10 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Hide regular page sections and navbars */
+  header,
+  footer,
+  nav,
+  section,
+  #main-navbar,
+  #quick-nav-dock {
+    display: none !important;
+  }
+
+  /* Hide everything by default in print */
   body * {
     visibility: hidden;
   }
-  #printable-table-stand, #printable-table-stand *,
-  #printable-certificate, #printable-certificate * {
+
+  /* Make only the active printable card visible and isolated */
+  #printable-certificate,
+  #printable-certificate *,
+  #printable-table-stand,
+  #printable-table-stand * {
     visibility: visible;
   }
-  #printable-table-stand,
-  #printable-certificate {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    background: white !important;
-    color: black !important;
+
+  #printable-certificate,
+  #printable-table-stand {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 98vh !important;
+    margin: 0 !important;
+    padding: 16px !important;
+    page-break-after: avoid !important;
+    page-break-before: avoid !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    background: #FAF6ED !important;
+    color: #140E10 !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
   }
 }

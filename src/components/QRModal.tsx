@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
-import { X, QrCode, Printer, Copy, Check, Wifi } from 'lucide-react';
+import { X, QrCode, Printer, Copy, Check, Wifi, Download, Loader2 } from 'lucide-react';
+import { toPng } from 'html-to-image';
 
 interface QRModalProps {
   isOpen: boolean;
@@ -14,6 +15,30 @@ export const QRModal: React.FC<QRModalProps> = ({ isOpen, onClose }) => {
   const [customUrl, setCustomUrl] = useState<string>(DEFAULT_DEPLOYED_URL);
   const [copied, setCopied] = useState<boolean>(false);
   const [stickerMode, setStickerMode] = useState<boolean>(false);
+  const [isDownloading, setIsDownloading] = useState<boolean>(false);
+
+  const downloadStandImage = async () => {
+    const node = document.getElementById('printable-table-stand');
+    if (!node) return;
+    setIsDownloading(true);
+    try {
+      const dataUrl = await toPng(node, {
+        quality: 0.98,
+        pixelRatio: 2.5,
+        backgroundColor: '#FFFFFF',
+        cacheBust: true,
+      });
+      const link = document.createElement('a');
+      link.download = stickerMode ? 'AIML_Dilli_Darbar_Table_Sticker.png' : 'PESITM_AIML_Dilli_Darbar_Stand_Poster.png';
+      link.href = dataUrl;
+      link.click();
+    } catch (err) {
+      console.error('Failed to export QR stand image:', err);
+      window.print();
+    } finally {
+      setIsDownloading(false);
+    }
+  };
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -200,19 +225,36 @@ export const QRModal: React.FC<QRModalProps> = ({ isOpen, onClose }) => {
         </div>
 
         {/* Modal Action Buttons */}
-        <div className="flex items-center justify-between gap-3 pt-1">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-2.5 pt-1">
+          <button
+            onClick={downloadStandImage}
+            disabled={isDownloading}
+            className="w-full sm:flex-1 py-3 rounded-xl bg-gradient-to-r from-delhi-gold-500 to-delhi-saffron-600 hover:from-delhi-gold-400 hover:to-delhi-saffron-500 text-delhi-dark-950 text-xs font-bold shadow-gold flex items-center justify-center gap-2 transition-all disabled:opacity-50"
+          >
+            {isDownloading ? (
+              <>
+                <Loader2 size={15} className="animate-spin" />
+                <span>Generating Image...</span>
+              </>
+            ) : (
+              <>
+                <Download size={15} />
+                <span>Download QR Card (PNG Image) 🖼️</span>
+              </>
+            )}
+          </button>
           <button
             onClick={handlePrint}
-            className="flex-1 py-3 rounded-xl bg-delhi-dark-800 hover:bg-delhi-dark-700 text-delhi-cream-100 border border-white/10 text-xs font-bold flex items-center justify-center gap-2 transition-colors"
+            className="w-full sm:w-auto px-4 py-3 rounded-xl bg-delhi-dark-800 hover:bg-delhi-dark-700 text-delhi-cream-200 border border-white/10 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
           >
             <Printer size={15} />
-            <span>🖨️ Print Stand Card</span>
+            <span>Print (1 Page)</span>
           </button>
           <button
             onClick={onClose}
-            className="flex-1 py-3 rounded-xl bg-gradient-to-r from-delhi-saffron-600 to-delhi-maroon-700 hover:from-delhi-saffron-500 hover:to-delhi-maroon-600 text-white text-xs font-bold shadow-gold flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-5 py-3 rounded-xl bg-delhi-dark-900 hover:bg-delhi-dark-800 text-delhi-cream-300 border border-white/10 text-xs font-bold"
           >
-            <span>Done</span>
+            <span>Close</span>
           </button>
         </div>
       </div>
