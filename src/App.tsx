@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { RoyalIntroLoader } from './components/RoyalIntroLoader';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { QuickNav } from './components/QuickNav';
@@ -16,12 +17,24 @@ import { Footer } from './components/Footer';
 import { QRModal } from './components/QRModal';
 
 export const App: React.FC = () => {
+  const [showIntro, setShowIntro] = useState<boolean>(true);
+  const [triggerMusic, setTriggerMusic] = useState<boolean>(false);
   const [isQRModalOpen, setIsQRModalOpen] = useState<boolean>(false);
+
+  const handleEnterExperience = (playMusic: boolean) => {
+    setShowIntro(false);
+    if (playMusic) {
+      setTriggerMusic(true);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-delhi-dark-950 text-delhi-cream-100 flex flex-col font-body selection:bg-delhi-saffron-600 selection:text-white">
+      {/* 🌟 Royal WOW Intro Loader Screen */}
+      {showIntro && <RoyalIntroLoader onEnter={handleEnterExperience} />}
+
       {/* Top Navbar */}
-      <Navbar onOpenQR={() => setIsQRModalOpen(true)} />
+      <Navbar onOpenQR={() => setIsQRModalOpen(true)} triggerMusic={triggerMusic} />
 
       {/* Main Content Sections */}
       <main className="flex-grow">

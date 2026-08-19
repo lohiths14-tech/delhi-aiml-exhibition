@@ -3,9 +3,10 @@ import { Menu, X, QrCode, Sparkles, VolumeX } from 'lucide-react';
 
 interface NavbarProps {
   onOpenQR: () => void;
+  triggerMusic?: boolean;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenQR }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onOpenQR, triggerMusic }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(false);
@@ -268,6 +269,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQR }) => {
         });
     }
   };
+
+  useEffect(() => {
+    if (triggerMusic && !isPlaying && !soundEnabled) {
+      toggleSound();
+    }
+  }, [triggerMusic]);
 
   return (
     <header
