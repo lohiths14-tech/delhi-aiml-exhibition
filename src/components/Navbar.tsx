@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, QrCode, Sparkles, Volume2, VolumeX } from 'lucide-react';
+import { Menu, X, QrCode, Sparkles, VolumeX } from 'lucide-react';
 
 interface NavbarProps {
   onOpenQR: () => void;
