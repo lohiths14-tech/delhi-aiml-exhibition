@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
-import { X, QrCode, Printer, Copy, Check, Wifi, Download, Loader2 } from 'lucide-react';
+import { X, QrCode, Printer, Copy, Check, Wifi, Download, Loader2, Share2 } from 'lucide-react';
 import { toPng } from 'html-to-image';
 
 interface QRModalProps {
@@ -37,6 +37,25 @@ export const QRModal: React.FC<QRModalProps> = ({ isOpen, onClose }) => {
       window.print();
     } finally {
       setIsDownloading(false);
+    }
+  };
+
+  const shareStandLink = async () => {
+    const target = customUrl || currentUrl || DEFAULT_DEPLOYED_URL;
+    if (typeof navigator !== 'undefined' && navigator.share) {
+      try {
+        await navigator.share({
+          title: 'AIML Dilli Darbar — Cooking Without Fire 2026',
+          text: 'Scan or click to explore our Delhi Heritage & No-Fire Culinary Exhibition by PESITM AIML! 🇮🇳✨',
+          url: target,
+        });
+      } catch {
+        // User cancelled
+      }
+    } else if (typeof navigator !== 'undefined' && navigator.clipboard) {
+      navigator.clipboard.writeText(target);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
     }
   };
 
@@ -242,6 +261,13 @@ export const QRModal: React.FC<QRModalProps> = ({ isOpen, onClose }) => {
                 <span>Download QR Card (PNG Image) 🖼️</span>
               </>
             )}
+          </button>
+          <button
+            onClick={shareStandLink}
+            className="w-full sm:w-auto px-4 py-3 rounded-xl bg-delhi-dark-800 hover:bg-delhi-dark-700 text-delhi-saffron-300 border border-delhi-saffron-500/30 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
+          >
+            <Share2 size={15} />
+            <span>Share 📲</span>
           </button>
           <button
             onClick={handlePrint}

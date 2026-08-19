@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DELHI_QUIZ_QUESTIONS } from '../data/delhiData';
-import { HelpCircle, CheckCircle2, XCircle, Trophy, RotateCcw, Sparkles, ArrowRight, Award, Download, Printer, Loader2 } from 'lucide-react';
+import { HelpCircle, CheckCircle2, XCircle, Trophy, RotateCcw, Sparkles, ArrowRight, Award, Download, Printer, Loader2, Share2 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { toPng } from 'html-to-image';
 
@@ -38,10 +38,30 @@ export const DelhiQuiz: React.FC = () => {
     }
   };
 
+  const shareCertificate = async () => {
+    if (typeof navigator !== 'undefined' && navigator.share) {
+      try {
+        await navigator.share({
+          title: `Delhi Heritage Award - ${recipientName}`,
+          text: `Check out my official PESITM Delhi Heritage Explorer Certificate awarded by Team AIML Dilli Darbar! 🇮🇳🏆`,
+          url: 'https://delhi-aiml-exhibition.vercel.app',
+        });
+      } catch {
+        // User cancelled
+      }
+    } else if (typeof navigator !== 'undefined' && navigator.clipboard) {
+      navigator.clipboard.writeText('https://delhi-aiml-exhibition.vercel.app');
+      alert('Exhibition Link Copied to Clipboard!');
+    }
+  };
+
   const currentQ = DELHI_QUIZ_QUESTIONS[currentIdx];
 
-  // Synthesized audio feedback
+  // Synthesized audio & haptic feedback
   const playAnswerSound = (isCorrect: boolean) => {
+    if (typeof navigator !== 'undefined' && 'vibrate' in navigator) {
+      navigator.vibrate(isCorrect ? [40, 30, 60] : 80);
+    }
     try {
       const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof window.AudioContext }).webkitAudioContext;
       if (!AudioCtx) return;
@@ -365,11 +385,18 @@ export const DelhiQuiz: React.FC = () => {
                     )}
                   </button>
                   <button
+                    onClick={shareCertificate}
+                    className="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-delhi-dark-800 hover:bg-delhi-dark-700 text-delhi-saffron-300 border border-delhi-saffron-500/30 text-xs font-semibold transition-all flex items-center justify-center gap-1.5"
+                  >
+                    <Share2 size={14} />
+                    <span>Share 📲</span>
+                  </button>
+                  <button
                     onClick={() => window.print()}
                     className="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-delhi-dark-800 hover:bg-delhi-dark-700 text-delhi-cream-200 border border-white/10 text-xs font-semibold transition-all flex items-center justify-center gap-1.5"
                   >
                     <Printer size={14} />
-                    <span>Print (1 Page PDF)</span>
+                    <span>Print (1 Page)</span>
                   </button>
                 </div>
               </div>

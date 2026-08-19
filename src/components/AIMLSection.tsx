@@ -167,6 +167,54 @@ export const AIMLSection: React.FC = () => {
               </div>
             </div>
           </div>
+
+          {/* 2. Interactive AI Neural Palate Customizer */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-delhi-dark-900/90 border border-delhi-gold-500/25 space-y-4">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-mono text-delhi-gold-300 font-bold uppercase tracking-wider flex items-center gap-1.5">
+                <Sparkles size={14} className="text-delhi-saffron-400" />
+                <span>2. Customize Your Palate (Live AI Match)</span>
+              </span>
+              <span className="text-[11px] font-mono text-purple-300 bg-purple-950/60 px-2 py-0.5 rounded border border-purple-500/30">
+                k-NN Flavor Classification
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+              <div className="space-y-1.5">
+                <div className="flex justify-between font-mono text-delhi-cream-300">
+                  <span>🍬 Sweet Preference:</span>
+                  <span className="text-delhi-gold-400 font-bold">High</span>
+                </div>
+                <div className="w-full bg-delhi-dark-950 rounded-full h-2 overflow-hidden border border-white/10">
+                  <div className="bg-gradient-to-r from-rose-500 to-delhi-gold-400 h-full rounded-full w-[85%]" />
+                </div>
+                <p className="text-[10px] text-delhi-cream-400 font-mono">Matched: Mohabbat Sharbat (98%)</p>
+              </div>
+
+              <div className="space-y-1.5">
+                <div className="flex justify-between font-mono text-delhi-cream-300">
+                  <span>🌶️ Spice & Tanginess:</span>
+                  <span className="text-delhi-saffron-400 font-bold">Medium-High</span>
+                </div>
+                <div className="w-full bg-delhi-dark-950 rounded-full h-2 overflow-hidden border border-white/10">
+                  <div className="bg-gradient-to-r from-delhi-gold-500 to-delhi-saffron-500 h-full rounded-full w-[78%]" />
+                </div>
+                <p className="text-[10px] text-delhi-cream-400 font-mono">Matched: Dahi Puri & Chaat (94%)</p>
+              </div>
+
+              <div className="space-y-1.5">
+                <div className="flex justify-between font-mono text-delhi-cream-300">
+                  <span>🧊 Hydration & Cooling:</span>
+                  <span className="text-emerald-400 font-bold">Max (100%)</span>
+                </div>
+                <div className="w-full bg-delhi-dark-950 rounded-full h-2 overflow-hidden border border-white/10">
+                  <div className="bg-gradient-to-r from-emerald-500 to-teal-400 h-full rounded-full w-[96%]" />
+                </div>
+                <p className="text-[10px] text-delhi-cream-400 font-mono">Matched: Watermelon Infusion (99%)</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Department Footer Badge */}

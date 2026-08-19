@@ -317,15 +317,33 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQR }) => {
 
         {/* Action Buttons */}
         <div className="flex items-center gap-2">
-          {/* Sound Mood Chime */}
+          {/* Live Classical Music Equalizer Button */}
           <button
             id="sound-toggle-btn"
             onClick={toggleSound}
-            title={soundEnabled ? 'Pause Music' : 'Play Delhi Music'}
-            className="hidden sm:flex items-center justify-center w-9 h-9 rounded-full bg-delhi-dark-800 border border-delhi-gold-500/30 text-delhi-gold-400 hover:bg-delhi-gold-500/20 transition-all"
+            title={soundEnabled ? 'Pause Classical Music' : 'Play Live Raga Yaman Sitar & Flute'}
+            className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full border transition-all ${
+              soundEnabled
+                ? 'bg-delhi-gold-500/20 border-delhi-gold-400 text-delhi-gold-300 shadow-gold'
+                : 'bg-delhi-dark-800 border-delhi-gold-500/30 text-delhi-cream-300 hover:bg-delhi-gold-500/10'
+            }`}
             aria-label="Toggle background music"
           >
-            {soundEnabled ? <Volume2 size={16} /> : <VolumeX size={16} />}
+            {soundEnabled ? (
+              <>
+                <div className="flex items-end gap-0.5 h-3.5">
+                  <span className="w-0.5 sm:w-1 bg-delhi-gold-400 rounded-full animate-bounce h-3" />
+                  <span className="w-0.5 sm:w-1 bg-delhi-saffron-400 rounded-full animate-bounce [animation-delay:0.2s] h-3.5" />
+                  <span className="w-0.5 sm:w-1 bg-delhi-gold-400 rounded-full animate-bounce [animation-delay:0.4s] h-2.5" />
+                </div>
+                <span className="text-[10px] sm:text-xs font-mono font-bold">Raga Yaman</span>
+              </>
+            ) : (
+              <>
+                <VolumeX size={14} className="text-delhi-cream-400" />
+                <span className="text-[10px] sm:text-xs font-mono">Play Music 🎵</span>
+              </>
+            )}
           </button>
 
           {/* Table QR Button */}
