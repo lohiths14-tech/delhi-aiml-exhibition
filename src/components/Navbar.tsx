@@ -38,6 +38,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQR }) => {
       if (!AudioCtx) return;
 
       const ctx = new AudioCtx();
+      if (ctx.state === 'suspended') {
+        ctx.resume();
+      }
       audioContextRef.current = ctx;
 
       const masterGain = ctx.createGain();
@@ -279,23 +282,23 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQR }) => {
         {/* Brand Logo */}
         <a
           href="#hero"
-          className="flex items-center gap-2.5 group cursor-pointer focus:outline-none"
+          className="flex items-center gap-2 group cursor-pointer focus:outline-none shrink-0"
         >
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-delhi-gold-400 via-delhi-saffron-600 to-delhi-maroon-800 p-0.5 shadow-gold transition-transform group-hover:scale-105">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-delhi-gold-400 via-delhi-saffron-600 to-delhi-maroon-800 p-0.5 shadow-gold transition-transform group-hover:scale-105 shrink-0">
             <div className="w-full h-full bg-delhi-dark-900 rounded-[10px] flex items-center justify-center">
-              <span className="text-xl">🇮🇳</span>
+              <span className="text-base sm:text-xl">🇮🇳</span>
             </div>
           </div>
           <div>
-            <div className="flex items-center gap-1.5">
-              <span className="font-heading font-bold text-lg md:text-xl tracking-wider text-delhi-gold-400 group-hover:text-delhi-gold-300 transition-colors">
+            <div className="flex items-center gap-1 sm:gap-1.5">
+              <span className="font-heading font-bold text-base sm:text-xl tracking-wider text-delhi-gold-400 group-hover:text-delhi-gold-300 transition-colors">
                 DELHI
               </span>
-              <span className="text-[11px] px-2 py-0.5 rounded-full bg-delhi-saffron-500/20 text-delhi-saffron-400 border border-delhi-saffron-500/30 font-mono font-bold">
+              <span className="text-[9px] sm:text-[11px] px-1.5 sm:px-2 py-0.5 rounded-full bg-delhi-saffron-500/20 text-delhi-saffron-400 border border-delhi-saffron-500/30 font-mono font-bold">
                 AIML DILLI DARBAR
               </span>
             </div>
-            <p className="text-[10px] text-delhi-cream-300/80 -mt-0.5 font-medium tracking-wide">
+            <p className="text-[9px] sm:text-[10px] text-delhi-cream-300/80 -mt-0.5 font-medium tracking-wide">
               Cooking Without Fire • PESITM
             </p>
           </div>
@@ -316,13 +319,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQR }) => {
         </nav>
 
         {/* Action Buttons */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           {/* Live Classical Music Equalizer Button */}
           <button
             id="sound-toggle-btn"
             onClick={toggleSound}
             title={soundEnabled ? 'Pause Classical Music' : 'Play Live Raga Yaman Sitar & Flute'}
-            className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full border transition-all ${
+            className={`flex items-center gap-1 px-2 sm:px-3 py-1.5 rounded-full border transition-all ${
               soundEnabled
                 ? 'bg-delhi-gold-500/20 border-delhi-gold-400 text-delhi-gold-300 shadow-gold'
                 : 'bg-delhi-dark-800 border-delhi-gold-500/30 text-delhi-cream-300 hover:bg-delhi-gold-500/10'
@@ -332,16 +335,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQR }) => {
             {soundEnabled ? (
               <>
                 <div className="flex items-end gap-0.5 h-3.5">
-                  <span className="w-0.5 sm:w-1 bg-delhi-gold-400 rounded-full animate-bounce h-3" />
-                  <span className="w-0.5 sm:w-1 bg-delhi-saffron-400 rounded-full animate-bounce [animation-delay:0.2s] h-3.5" />
-                  <span className="w-0.5 sm:w-1 bg-delhi-gold-400 rounded-full animate-bounce [animation-delay:0.4s] h-2.5" />
+                  <span className="w-0.5 bg-delhi-gold-400 rounded-full animate-bounce h-3" />
+                  <span className="w-0.5 bg-delhi-saffron-400 rounded-full animate-bounce [animation-delay:0.2s] h-3.5" />
+                  <span className="w-0.5 bg-delhi-gold-400 rounded-full animate-bounce [animation-delay:0.4s] h-2.5" />
                 </div>
-                <span className="text-[10px] sm:text-xs font-mono font-bold">Raga Yaman</span>
+                <span className="text-[10px] sm:text-xs font-mono font-bold hidden xs:inline">Raga Yaman</span>
               </>
             ) : (
               <>
-                <VolumeX size={14} className="text-delhi-cream-400" />
-                <span className="text-[10px] sm:text-xs font-mono">Play Music 🎵</span>
+                <VolumeX size={13} className="text-delhi-cream-400" />
+                <span className="text-[10px] sm:text-xs font-mono hidden xs:inline">Music 🎵</span>
               </>
             )}
           </button>
@@ -350,20 +353,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQR }) => {
           <button
             id="table-qr-btn"
             onClick={onOpenQR}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-delhi-saffron-600 to-delhi-maroon-700 hover:from-delhi-saffron-500 hover:to-delhi-maroon-600 text-white text-xs font-semibold shadow-gold transition-all duration-200 hover:scale-105 active:scale-95 border border-delhi-gold-400/40"
+            className="flex items-center gap-1 px-2.5 sm:px-3.5 py-1.5 rounded-full bg-gradient-to-r from-delhi-saffron-600 to-delhi-maroon-700 hover:from-delhi-saffron-500 hover:to-delhi-maroon-600 text-white text-[11px] sm:text-xs font-semibold shadow-gold transition-all duration-200 hover:scale-105 active:scale-95 border border-delhi-gold-400/40"
           >
-            <QrCode size={14} className="animate-pulse" />
-            <span>Table QR</span>
+            <QrCode size={13} className="animate-pulse" />
+            <span className="hidden xs:inline">Table QR</span>
+            <span className="xs:hidden">QR</span>
           </button>
 
           {/* Mobile Menu Button */}
           <button
             id="mobile-menu-toggle"
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-xl bg-delhi-dark-800 border border-delhi-gold-500/30 text-delhi-cream-100 focus:outline-none"
+            className="lg:hidden p-1.5 sm:p-2 rounded-xl bg-delhi-dark-800 border border-delhi-gold-500/30 text-delhi-cream-100 focus:outline-none"
             aria-label="Toggle navigation menu"
           >
-            {isOpen ? <X size={20} /> : <Menu size={20} />}
+            {isOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
         </div>
       </div>
