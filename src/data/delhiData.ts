@@ -76,6 +76,7 @@ export interface QuizQuestion {
 
 export interface TeamMember {
   id: string;
+  name: string;
   roleNumber: string;
   title: string;
   roleDescription: string;
@@ -499,34 +500,38 @@ export const DELHI_QUIZ_QUESTIONS: QuizQuestion[] = [
 export const TEAM_MEMBERS: TeamMember[] = [
   {
     id: "member-01",
+    name: "Lohith S",
     roleNumber: "TEAM MEMBER 01",
-    title: "Culinary Formulation & Taste Architecture",
+    title: "Culinary Formulation & System Lead",
     roleDescription: "Led the selection, ingredient balancing, and authentic spice formulation of Delhi's no-fire menu.",
-    namePlaceholder: "AIML Student Lead 01",
+    namePlaceholder: "Lohith S",
     responsibilities: ["Dish Balance & Flavour Ratio", "Authentic Delhi Recipe Sourcing", "Quality & Hygiene Compliance"]
   },
   {
     id: "member-02",
+    name: "Rithesh Balaji C M",
     roleNumber: "TEAM MEMBER 02",
     title: "Interactive System & Experience Engineering",
     roleDescription: "Engineered the mobile-first QR digital microsite, responsive architecture, and dynamic flavor radar.",
-    namePlaceholder: "AIML Student Lead 02",
+    namePlaceholder: "Rithesh Balaji C M",
     responsibilities: ["React/TypeScript Architecture", "Mobile Performance Optimization", "Interactive Quiz & State Engine"]
   },
   {
     id: "member-03",
+    name: "Shridhar Pundalik T",
     roleNumber: "TEAM MEMBER 03",
     title: "Cultural Research & Content Curation",
     roleDescription: "Curated historical timelines, architectural insights, and verified cultural folklore of Old Delhi.",
-    namePlaceholder: "AIML Student Lead 03",
+    namePlaceholder: "Shridhar Pundalik T",
     responsibilities: ["Fact-checked Historical Data", "Monument & Street Food Stories", "Brand Voice & Visual Aesthetics"]
   },
   {
     id: "member-04",
+    name: "Kedhar Basappa Mirje",
     roleNumber: "TEAM MEMBER 04",
     title: "Stall Presentation & Live Operations",
     roleDescription: "Coordinated table design, QR physical deployment, judge presentation flow, and live assembly.",
-    namePlaceholder: "AIML Student Lead 04",
+    namePlaceholder: "Kedhar Basappa Mirje",
     responsibilities: ["Stall & Table Presentation", "Judge Interaction Experience", "Hygienic Assembly Flow"]
   }
 ];

@@ -42,16 +42,16 @@ export const TeamSection: React.FC = () => {
                   </span>
                 </div>
 
-                {/* Member Role & Title */}
-                <div>
-                  <span className="text-xs font-mono text-delhi-saffron-400 font-bold uppercase tracking-wider block">
+                {/* Member Name & Role */}
+                <div className="space-y-1">
+                  <span className="text-[10px] font-mono text-delhi-saffron-400 font-bold uppercase tracking-wider block">
                     {member.roleNumber}
                   </span>
-                  <h3 className="text-base font-heading font-bold text-white mt-1 group-hover:text-delhi-gold-300 transition-colors">
-                    {member.title}
+                  <h3 className="text-lg font-heading font-extrabold text-white group-hover:text-delhi-gold-300 transition-colors">
+                    {member.name}
                   </h3>
-                  <p className="text-xs text-delhi-cream-400 font-medium mt-1">
-                    {member.namePlaceholder}
+                  <p className="text-xs text-delhi-gold-400 font-medium font-mono">
+                    {member.title}
                   </p>
                 </div>
 
