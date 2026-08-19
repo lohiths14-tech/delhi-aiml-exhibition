@@ -13,13 +13,13 @@ export const OurMenuSection: React.FC = () => {
         <div className="text-center space-y-3">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-delhi-saffron-600/30 to-delhi-maroon-800/40 border border-delhi-gold-500/40 text-delhi-gold-300 text-xs font-semibold uppercase tracking-wider shadow-gold">
             <Heart size={13} className="text-rose-400 fill-rose-400" />
-            <span>Cooking Without Fire Competition</span>
+            <span>👑 Curated by Team AIML Dilli Darbar</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-black text-white">
             ❤️ OUR DELHI SPECIAL
           </h2>
           <p className="text-sm sm:text-base text-delhi-cream-200/90 max-w-2xl mx-auto">
-            Crafted with passion by the AIML Department — three authentic delicacies prepared with zero fire, zero stoves, and 100% fresh ingredients.
+            Crafted with passion by <strong className="text-delhi-gold-300 font-semibold">Team AIML Dilli Darbar</strong> — three authentic delicacies prepared with zero fire, zero stoves, and 100% fresh ingredients.
           </p>
           <div className="w-28 h-1 bg-gradient-to-r from-transparent via-delhi-gold-400 to-transparent mx-auto mt-3" />
         </div>

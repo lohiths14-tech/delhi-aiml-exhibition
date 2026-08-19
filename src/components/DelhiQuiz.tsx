@@ -426,7 +426,7 @@ export const DelhiQuiz: React.FC = () => {
                     {/* Right: Verification Authority */}
                     <div className="text-right space-y-0.5">
                       <p className="text-[9px] text-delhi-dark-600 uppercase font-bold">Verified By</p>
-                      <p className="font-bold text-delhi-maroon-900 text-[10px]">AIML Student Team</p>
+                      <p className="font-bold text-delhi-maroon-900 text-[10px]">Team AIML Dilli Darbar</p>
                       <p className="text-[8px] text-delhi-gold-800 font-semibold truncate">
                         No: PESITM-AIML-DHE-2026-001
                       </p>

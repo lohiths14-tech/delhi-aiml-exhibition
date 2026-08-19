@@ -36,9 +36,9 @@ export const HeroSection: React.FC = () => {
       {/* Main Content Container */}
       <div className="relative z-10 max-w-4xl mx-auto text-center space-y-6">
         {/* Top Department Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-delhi-maroon-900/80 to-delhi-dark-800/80 border border-delhi-gold-500/40 backdrop-blur-md shadow-gold text-delhi-gold-300 text-xs sm:text-sm font-medium">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-delhi-maroon-900/90 via-delhi-dark-800/90 to-delhi-maroon-900/90 border border-delhi-gold-500/50 backdrop-blur-md shadow-gold text-delhi-gold-300 text-xs sm:text-sm font-medium">
           <Sparkles size={14} className="text-delhi-saffron-500 animate-spin" style={{ animationDuration: '8s' }} />
-          <span>Created with ❤️ by AIML Students</span>
+          <span className="font-heading font-bold text-delhi-gold-200">👑 TEAM: AIML DILLI DARBAR</span>
           <span className="w-1 h-1 rounded-full bg-delhi-gold-400" />
           <span className="text-delhi-cream-200 font-semibold">PESITM Shivamogga</span>
         </div>
@@ -52,7 +52,7 @@ export const HeroSection: React.FC = () => {
             </h1>
           </div>
           <p className="text-xl sm:text-2xl md:text-3xl font-heading font-semibold text-delhi-gold-400 tracking-wide">
-            The Heart of India
+            The Heart of India • Dilli Darbar
           </p>
         </div>
 

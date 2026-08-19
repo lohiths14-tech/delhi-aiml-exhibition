@@ -67,7 +67,7 @@ export const Footer: React.FC = () => {
               </span>
             </div>
             <p className="text-xs text-delhi-gold-400 font-heading font-semibold">
-              The Heart of India
+              The Heart of India • AIML Dilli Darbar
             </p>
             <p className="text-[11px] font-hindi text-delhi-saffron-400">
               स्वाद • संस्कृति • मोहब्बत
@@ -80,11 +80,11 @@ export const Footer: React.FC = () => {
               <GraduationCap size={16} className="text-delhi-gold-400" />
               <span>PES Institute of Technology & Management, Shivamogga</span>
             </div>
-            <p className="text-xs text-delhi-gold-300 font-mono">
-              Department of Artificial Intelligence & Machine Learning
+            <p className="text-xs text-delhi-gold-300 font-mono font-bold">
+              👑 Team: AIML DILLI DARBAR
             </p>
             <p className="text-[11px] text-delhi-cream-400">
-              Cooking Without Fire Competition 2026
+              Department of AI & ML • Cooking Without Fire 2026
             </p>
           </div>
 
@@ -105,7 +105,7 @@ export const Footer: React.FC = () => {
         {/* Copyright notice */}
         <div className="pt-4 border-t border-white/5 text-center">
           <p className="text-[11px] text-delhi-cream-400/60 font-mono">
-            Crafted for presentation by AIML Department • Built with React, Vite & Tailwind CSS
+            Crafted with royal pride by Team AIML Dilli Darbar • PESITM Shivamogga
           </p>
         </div>
       </div>

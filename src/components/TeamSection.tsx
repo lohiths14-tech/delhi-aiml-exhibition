@@ -8,15 +8,18 @@ export const TeamSection: React.FC = () => {
       <div className="max-w-6xl mx-auto space-y-12 relative z-10">
         {/* Section Header */}
         <div className="text-center space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-delhi-maroon-900/60 border border-delhi-gold-500/30 text-delhi-gold-400 text-xs font-semibold uppercase tracking-wider">
-            <Users size={13} />
-            <span>PESITM AIML Innovators</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-delhi-maroon-900/80 border border-delhi-gold-500/40 text-delhi-gold-300 text-xs font-semibold uppercase tracking-wider shadow-gold">
+            <Users size={13} className="text-delhi-saffron-400" />
+            <span>👑 Official Stall Team</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-white">
-            👨‍💻 THE AIML TEAM
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-black text-white tracking-wide">
+            🏛️ AIML DILLI DARBAR
           </h2>
           <p className="text-base sm:text-lg text-delhi-saffron-400 font-medium max-w-xl mx-auto italic">
-            “Four minds. One Delhi. One experience.”
+            “Four minds. One Dilli Darbar. One royal culinary & digital experience.”
+          </p>
+          <p className="text-xs font-mono text-delhi-cream-300/80 uppercase tracking-widest">
+            Department of Artificial Intelligence & Machine Learning • PESITM Shivamogga
           </p>
           <div className="w-24 h-1 bg-gradient-to-r from-transparent via-delhi-gold-500 to-transparent mx-auto mt-3" />
         </div>

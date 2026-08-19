@@ -291,12 +291,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQR }) => {
               <span className="font-heading font-bold text-lg md:text-xl tracking-wider text-delhi-gold-400 group-hover:text-delhi-gold-300 transition-colors">
                 DELHI
               </span>
-              <span className="text-xs px-1.5 py-0.5 rounded bg-delhi-saffron-500/20 text-delhi-saffron-500 font-mono font-semibold">
-                AIML
+              <span className="text-[11px] px-2 py-0.5 rounded-full bg-delhi-saffron-500/20 text-delhi-saffron-400 border border-delhi-saffron-500/30 font-mono font-bold">
+                AIML DILLI DARBAR
               </span>
             </div>
             <p className="text-[10px] text-delhi-cream-300/80 -mt-0.5 font-medium tracking-wide">
-              Cooking Without Fire
+              Cooking Without Fire • PESITM
             </p>
           </div>
         </a>

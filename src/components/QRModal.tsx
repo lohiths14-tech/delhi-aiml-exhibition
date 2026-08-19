@@ -118,8 +118,11 @@ export const QRModal: React.FC<QRModalProps> = ({ isOpen, onClose }) => {
                 <p className="text-xs font-hindi text-delhi-saffron-700 font-semibold">
                   “स्वाद • संस्कृति • मोहब्बत”
                 </p>
+                <p className="text-[11px] font-mono font-bold text-delhi-saffron-800">
+                  👑 Team: AIML DILLI DARBAR
+                </p>
                 <p className="text-[10px] font-mono text-delhi-dark-700 font-medium">
-                  Cooking Without Fire 2026 • AIML Department
+                  Cooking Without Fire 2026 • PESITM Shivamogga
                 </p>
               </div>
             </>
